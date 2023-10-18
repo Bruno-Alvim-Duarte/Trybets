@@ -11,6 +11,8 @@ public class OddService : IOddService
 
     public async Task<object> UpdateOdd(int MatchId, int TeamId, decimal BetValue)
     {
-        throw new NotImplementedException();
+        var response = await _client.PatchAsync($"http://localhost:5504/odd/{MatchId}/{TeamId}/{BetValue}", null);
+        var result = response.Content.ReadFromJsonAsync<object>();
+        return result;
     }
 }
